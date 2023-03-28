@@ -1,5 +1,5 @@
 <script>
-	import {  Heading, P, Button } from 'flowbite-svelte'
+	import {  Heading,P, Button } from 'flowbite-svelte'
   </script>
   
   <div  class="text-center py-8">
