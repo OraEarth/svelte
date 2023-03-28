@@ -21,6 +21,7 @@
 	<NavUl {hidden}>
 	  <NavLi href="/" active={true}>Home</NavLi>
 	  <NavLi href="/about">About</NavLi>
+	  <NavLi href="/blog">Blog</NavLi>
 	</NavUl>
 	<DarkMode btnClass={darkmodebtn} />
   </Navbar>
