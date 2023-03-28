@@ -12,7 +12,7 @@ devDependencies:
   eslint-config-prettier: 8.8.0_eslint@8.36.0
   eslint-plugin-svelte3: 4.0.0_eslint@8.36.0+svelte@3.57.0
   flowbite: 1.6.4
-  flowbite-svelte: 0.29.13
+  flowbite-svelte: 0.34.2_svelte@3.57.0
   flowbite-svelte-blocks: 0.1.6
   postcss: 8.4.21
   prettier: 2.8.7
@@ -1291,17 +1291,20 @@ packages:
     dev: true
     resolution:
       integrity: sha512-KQc27LPl4YkQbD8ElysabVj7sKlGyBDFSd2Gf3ls/xdjQaKMHEPrWo99/uAsWmLTRCGfub6LW95QPFJwcwnHiQ==
-  /flowbite-svelte/0.29.13:
+  /flowbite-svelte/0.34.2_svelte@3.57.0:
     dependencies:
       '@popperjs/core': 2.11.7
       classnames: 2.3.2
       flowbite: 1.6.4
+      svelte: 3.57.0
     dev: true
     engines:
       node: '>=16.0.0'
       npm: '>=7.0.0'
+    peerDependencies:
+      svelte: ^3.55.1
     resolution:
-      integrity: sha512-9MnJzdPyooPm4Gp6Fl+NrozNiL6eQiLQ7BdraKkH6Gh34VR4G6mFkJcG4CUptFQ84zSa0YHhF9MYcnsrK8nLsg==
+      integrity: sha512-Botfv97qQq0bPiK0vLVx0KIttFHj5iQ38a+krwBlqkTTzRO3zeUuRAZPg6A/FVLF5swXU8zb5c37Kls21vGJHA==
   /flowbite/1.6.4:
     dependencies:
       '@popperjs/core': 2.11.7
@@ -2673,7 +2676,7 @@ specifiers:
   eslint-config-prettier: ^8.8.0
   eslint-plugin-svelte3: ^4.0.0
   flowbite: ^1.6.4
-  flowbite-svelte: ^0.29.13
+  flowbite-svelte: ^0.34.2
   flowbite-svelte-blocks: ^0.1.6
   postcss: ^8.4.21
   prettier: ^2.8.7
