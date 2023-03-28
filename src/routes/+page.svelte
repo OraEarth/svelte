@@ -1,15 +1,11 @@
-
 <script>
-	import { Alert } from 'flowbite-svelte';
-</script>
-
-<h1 class="text-3xl dark:text-white">Welcome to SvelteKit</h1>
-<p class="dark:text-white">
-	Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-</p>
-
-<div class="p-8">
-	<Alert>
-		<span class="font-medium">Info alert!</span> Change a few things up and try submitting again.
-	</Alert>
-</div>
+	import {  Heading, P, Button } from 'flowbite-svelte'
+  </script>
+  
+  <div  class="text-center py-8">
+	<Heading tag="h1" class="mb-4" customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl">We invest into your full human potential</Heading>
+	<P class="mb-6 text-lg lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">At Ora we focus on you and where your passion evolves, to unlock long-term personal and economic growth.</P>
+	<Button href="/">Learn more 
+	<svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+	</Button>
+  </div>

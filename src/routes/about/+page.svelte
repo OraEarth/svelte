@@ -1,8 +1,7 @@
-
 <script>
+	import Sidebar from '../../components/Sidebar.svelte';
 	import { Alert } from 'flowbite-svelte';
 </script>
 
 <h1 class="text-3xl dark:text-white">Welcome to About</h1>
-
-
+<Sidebar />
