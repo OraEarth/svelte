@@ -21,6 +21,7 @@
 	<NavHamburger on:click={toggle} />
 	<NavUl {hidden}>
 	  <NavLi href="/" active={true}>Home</NavLi>
+	  <NavLi href="/myProfile">My Profile</NavLi>
 	  <NavLi href="/about">About</NavLi>
 	</NavUl>
 <DarkMode btnClass={darkmodebtn} />
