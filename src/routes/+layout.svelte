@@ -30,9 +30,9 @@
 
   <div class="p-12">
  	 <slot />
-	</div>
+</div>
 
-
+<!-- 
 
 <BottomNav position="absolute" navType="application" innerDiv="grid-cols-5">
 	<BottomNavItem on:click={() => goto("/")} btnName="Home" appBtnPosition="left">
@@ -76,4 +76,4 @@
 	  <Button on:click={() => alert('Handle "success"')}>I accept</Button>
 	  <Button color="alternative">Decline</Button>
 	</svelte:fragment>
-  </Modal>
+  </Modal> -->

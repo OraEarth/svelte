@@ -26,11 +26,13 @@ type Projects {
   date_updated_func: datetime_functions
   end: Date!
   end_func: datetime_functions
+  favorite: Boolean
   id: ID!
   name: String
   start: Date
   start_func: datetime_functions
   status: String
+  teams(filter: Projects_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): Projects
   user_created: String
   user_updated: String
 }
@@ -52,16 +54,19 @@ type Projects_aggregated_count {
   date_created: Int
   date_updated: Int
   end: Int
+  favorite: Int
   id: Int
   name: Int
   start: Int
   status: Int
+  teams: Int
   user_created: Int
   user_updated: Int
 }
 
 type Projects_aggregated_fields {
   id: Float
+  teams: Float
 }
 
 input Projects_filter {
@@ -73,11 +78,13 @@ input Projects_filter {
   date_updated_func: datetime_function_filter_operators
   end: date_filter_operators
   end_func: datetime_function_filter_operators
+  favorite: boolean_filter_operators
   id: number_filter_operators
   name: string_filter_operators
   start: date_filter_operators
   start_func: datetime_function_filter_operators
   status: string_filter_operators
+  teams: Projects_filter
   user_created: string_filter_operators
   user_updated: string_filter_operators
 }
@@ -88,14 +95,23 @@ type Query {
   Projects_by_id(id: ID!): Projects
 }
 
+input boolean_filter_operators {
+  _eq: Boolean
+  _neq: Boolean
+  _nnull: Boolean
+  _null: Boolean
+}
+
 input create_Projects_input {
   date_created: Date
   date_updated: Date
   end: Date!
+  favorite: Boolean
   id: ID
   name: String
   start: Date
   status: String
+  teams: create_Projects_input
   user_created: String
   user_updated: String
 }
@@ -182,10 +198,12 @@ input update_Projects_input {
   date_created: Date
   date_updated: Date
   end: Date
+  favorite: Boolean
   id: ID
   name: String
   start: Date
   status: String
+  teams: update_Projects_input
   user_created: String
   user_updated: String
 }
