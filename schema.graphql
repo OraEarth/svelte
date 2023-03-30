@@ -79,6 +79,12 @@ type Query {
   apps(filter: apps_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps!]!
   apps_aggregated(filter: apps_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_aggregated!]!
   apps_by_id(id: ID!): apps
+  apps_todos(filter: apps_todos_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_todos!]!
+  apps_todos_aggregated(filter: apps_todos_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_todos_aggregated!]!
+  apps_todos_by_id(id: ID!): apps_todos
+  todos(filter: todos_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [todos!]!
+  todos_aggregated(filter: todos_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [todos_aggregated!]!
+  todos_by_id(id: ID!): todos
 }
 
 type apps {
@@ -90,6 +96,8 @@ type apps {
   image: String
   name: String
   sort: Int
+  todos(filter: apps_todos_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_todos]
+  todos_func: count_functions
   user_created: String
   user_updated: String
 }
@@ -114,6 +122,7 @@ type apps_aggregated_count {
   image: Int
   name: Int
   sort: Int
+  todos: Int
   user_created: Int
   user_updated: Int
 }
@@ -133,8 +142,47 @@ input apps_filter {
   image: string_filter_operators
   name: string_filter_operators
   sort: number_filter_operators
+  todos: apps_todos_filter
+  todos_func: count_function_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
+}
+
+type apps_todos {
+  apps_id(filter: apps_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): apps
+  id: ID!
+  todos_id(filter: todos_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): todos
+}
+
+type apps_todos_aggregated {
+  avg: apps_todos_aggregated_fields
+  avgDistinct: apps_todos_aggregated_fields
+  count: apps_todos_aggregated_count
+  countAll: Int
+  countDistinct: apps_todos_aggregated_count
+  group: JSON
+  max: apps_todos_aggregated_fields
+  min: apps_todos_aggregated_fields
+  sum: apps_todos_aggregated_fields
+  sumDistinct: apps_todos_aggregated_fields
+}
+
+type apps_todos_aggregated_count {
+  apps_id: Int
+  id: Int
+  todos_id: Int
+}
+
+type apps_todos_aggregated_fields {
+  id: Float
+}
+
+input apps_todos_filter {
+  _and: [apps_todos_filter]
+  _or: [apps_todos_filter]
+  apps_id: apps_filter
+  id: number_filter_operators
+  todos_id: todos_filter
 }
 
 input boolean_filter_operators {
@@ -142,6 +190,14 @@ input boolean_filter_operators {
   _neq: Boolean
   _nnull: Boolean
   _null: Boolean
+}
+
+input count_function_filter_operators {
+  count: number_filter_operators
+}
+
+type count_functions {
+  count: Int
 }
 
 input create_Projects_input {
@@ -230,6 +286,46 @@ input string_filter_operators {
   _nstarts_with: String
   _null: Boolean
   _starts_with: String
+}
+
+type todos {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  name: String
+  user_created: String
+  user_updated: String
+}
+
+type todos_aggregated {
+  count: todos_aggregated_count
+  countAll: Int
+  countDistinct: todos_aggregated_count
+  group: JSON
+}
+
+type todos_aggregated_count {
+  date_created: Int
+  date_updated: Int
+  id: Int
+  name: Int
+  user_created: Int
+  user_updated: Int
+}
+
+input todos_filter {
+  _and: [todos_filter]
+  _or: [todos_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  name: string_filter_operators
+  user_created: string_filter_operators
+  user_updated: string_filter_operators
 }
 
 input update_Projects_input {

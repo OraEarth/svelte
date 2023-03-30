@@ -1,5 +1,7 @@
 <script>
 	import {
+		Li,
+		List,
 		Sidebar,
 		SidebarGroup,
 		SidebarItem,
@@ -52,6 +54,11 @@
 				>{$AppById.data.apps_by_id.name}<br />
 				<Secondary class="ml-2">{$AppById.data.apps_by_id.id}</Secondary></Heading
 			>
+			<List tag="ul" class="space-y-1">
+				{#each $AppById.data.apps_by_id.todos as todo}
+					<Li>{todo.todos_id.name}</Li>
+				{/each}
+			</List>
 		</div>
 	</div>
 {/if}
