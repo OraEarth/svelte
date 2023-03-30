@@ -76,6 +76,65 @@ type Query {
   Projects(filter: Projects_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Projects!]!
   Projects_aggregated(filter: Projects_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Projects_aggregated!]!
   Projects_by_id(id: ID!): Projects
+  apps(filter: apps_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps!]!
+  apps_aggregated(filter: apps_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_aggregated!]!
+  apps_by_id(id: ID!): apps
+}
+
+type apps {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  image: String
+  name: String
+  sort: Int
+  user_created: String
+  user_updated: String
+}
+
+type apps_aggregated {
+  avg: apps_aggregated_fields
+  avgDistinct: apps_aggregated_fields
+  count: apps_aggregated_count
+  countAll: Int
+  countDistinct: apps_aggregated_count
+  group: JSON
+  max: apps_aggregated_fields
+  min: apps_aggregated_fields
+  sum: apps_aggregated_fields
+  sumDistinct: apps_aggregated_fields
+}
+
+type apps_aggregated_count {
+  date_created: Int
+  date_updated: Int
+  id: Int
+  image: Int
+  name: Int
+  sort: Int
+  user_created: Int
+  user_updated: Int
+}
+
+type apps_aggregated_fields {
+  sort: Float
+}
+
+input apps_filter {
+  _and: [apps_filter]
+  _or: [apps_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  image: string_filter_operators
+  name: string_filter_operators
+  sort: number_filter_operators
+  user_created: string_filter_operators
+  user_updated: string_filter_operators
 }
 
 input boolean_filter_operators {

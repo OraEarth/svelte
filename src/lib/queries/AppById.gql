@@ -1,0 +1,6 @@
+query AppById($id: ID!) {
+    apps_by_id(id: $id) {
+        id
+        name
+    }
+}
