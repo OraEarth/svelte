@@ -2,25 +2,41 @@
     import { graphql } from "$houdini";
     import { goto } from "$app/navigation";
     import { Star } from "svelte-heros-v2";
-    import { Card, Avatar, Button } from "flowbite-svelte";
-    import { Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell} from 'flowbite-svelte';
+    import { Card, Avatar, Button, Table, TableBody, TableBodyCell, TableBodyRow, TableHead, TableHeadCell } from "flowbite-svelte";
     export let data
 
+    const createProject = graphql(`
+        mutation CreateProject($name: String!) {
+            create_Projects_item(data: {name: $name}) {
+                id
+                name
+                favorite
+            }
+        }
+           
+   `)
     const toggleFavorite = graphql(`
         mutation ToggleFavorite($id: ID!, $favorite: Boolean!) {
             update_Projects_item(id: $id, data: {favorite: $favorite}) {
                 id
+                name
                 favorite
             }
         }
    `)
-
+    const deleteProject = graphql(`
+        mutation DeleteProject($id: ID!) {
+            delete_Projects_item(id: $id) {
+                id
+            }
+        }
+   `)
 
     $: ({ Projects } = data)
 </script>
 
 {#if $Projects.fetching}
-<Card />
+    fetching
 {:else}
 
 <div class="flex-1">
@@ -28,19 +44,20 @@
 
 <div class="grid grid-cols-6 gap-4">
     <div class="col-start-1 col-end-5">
-
+        <Button on:click={() => createProject.mutate({name: "Test"})}>Create New</Button>
         <Table>
             <TableHead>
               <TableHeadCell>ID</TableHeadCell>
               <TableHeadCell>Product</TableHeadCell>
               <TableHeadCell>Favorite</TableHeadCell>
             </TableHead>
-            <TableBody class="divide-y">
+            <TableBody>
                 {#each $Projects.data.Projects as item}
                 <TableBodyRow on:click={() => goto("/projects/" + item.id)}>
                     <TableBodyCell>{item.id}</TableBodyCell>
                     <TableBodyCell>{item.name}</TableBodyCell>
-                    <TableBodyCell>  {#if item.favorite}
+                    <TableBodyCell>  
+                        {#if item.favorite}
                         <Star size="20" variation="solid" class="text-yellow-300" />
                        {:else}
                        <Star size="20" class="text-gray-300" />
@@ -65,12 +82,11 @@
                     {:else}
                     <Star size="50" class="text-gray-300" />
                 {/if}
-                <span class="text-sm text-gray-500 dark:text-gray-400">{$Projects.data.Projects_by_id.favorite}</span>
                 <div class="flex mt-4 space-x-3 lg:mt-6">
                     <Button color="yellow" on:click={() => toggleFavorite.mutate({
                         id: $Projects.data.Projects_by_id.id, favorite: !$Projects.data.Projects_by_id.favorite
                     })}>Favorite</Button>
-                    <Button color="red" class="dark:text-white">Delete</Button>
+                    <Button on:click={() => deleteProject.mutate({id: $Projects.data.Projects_by_id.id })} color="red" class="dark:text-white">Delete</Button>
                 </div>
             </div>
         </Card>

@@ -1,10 +1,10 @@
-query Projects($id: ID! = 1) {
+query Projects($id: ID! = 7) {
     Projects_by_id(id: $id) {
         id
         name
         favorite
     }
-    Projects @list(name:"FavoriteSpecies") {
+    Projects {
         id
         name
         favorite
