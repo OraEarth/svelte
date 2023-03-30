@@ -12,6 +12,8 @@ scalar JSON
 type Mutation {
   create_Projects_item(data: create_Projects_input!): Projects
   create_Projects_items(data: [create_Projects_input!], filter: Projects_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Projects!]!
+  create_todos_item(data: create_todos_input!): todos
+  create_todos_items(data: [create_todos_input!], filter: todos_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [todos!]!
   delete_Projects_item(id: ID!): delete_one
   delete_Projects_items(ids: [ID]!): delete_many
   update_Projects_batch(data: [update_Projects_input!], filter: Projects_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [Projects!]!
@@ -82,9 +84,18 @@ type Query {
   apps_todos(filter: apps_todos_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_todos!]!
   apps_todos_aggregated(filter: apps_todos_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_todos_aggregated!]!
   apps_todos_by_id(id: ID!): apps_todos
+  apps_views(filter: apps_views_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_views!]!
+  apps_views_aggregated(filter: apps_views_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_views_aggregated!]!
+  apps_views_by_id(id: ID!): apps_views
   todos(filter: todos_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [todos!]!
   todos_aggregated(filter: todos_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [todos_aggregated!]!
   todos_by_id(id: ID!): todos
+  views(filter: views_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [views!]!
+  views_aggregated(filter: views_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [views_aggregated!]!
+  views_by_id(id: ID!): views
+  views_collections(filter: views_collections_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [views_collections!]!
+  views_collections_aggregated(filter: views_collections_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [views_collections_aggregated!]!
+  views_collections_by_id(id: ID!): views_collections
 }
 
 type apps {
@@ -100,6 +111,8 @@ type apps {
   todos_func: count_functions
   user_created: String
   user_updated: String
+  views(filter: apps_views_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_views]
+  views_func: count_functions
 }
 
 type apps_aggregated {
@@ -125,6 +138,7 @@ type apps_aggregated_count {
   todos: Int
   user_created: Int
   user_updated: Int
+  views: Int
 }
 
 type apps_aggregated_fields {
@@ -146,6 +160,8 @@ input apps_filter {
   todos_func: count_function_filter_operators
   user_created: string_filter_operators
   user_updated: string_filter_operators
+  views: apps_views_filter
+  views_func: count_function_filter_operators
 }
 
 type apps_todos {
@@ -185,6 +201,43 @@ input apps_todos_filter {
   todos_id: todos_filter
 }
 
+type apps_views {
+  apps_id(filter: apps_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): apps
+  id: ID!
+  views_id(filter: views_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): views
+}
+
+type apps_views_aggregated {
+  avg: apps_views_aggregated_fields
+  avgDistinct: apps_views_aggregated_fields
+  count: apps_views_aggregated_count
+  countAll: Int
+  countDistinct: apps_views_aggregated_count
+  group: JSON
+  max: apps_views_aggregated_fields
+  min: apps_views_aggregated_fields
+  sum: apps_views_aggregated_fields
+  sumDistinct: apps_views_aggregated_fields
+}
+
+type apps_views_aggregated_count {
+  apps_id: Int
+  id: Int
+  views_id: Int
+}
+
+type apps_views_aggregated_fields {
+  id: Float
+}
+
+input apps_views_filter {
+  _and: [apps_views_filter]
+  _or: [apps_views_filter]
+  apps_id: apps_filter
+  id: number_filter_operators
+  views_id: views_filter
+}
+
 input boolean_filter_operators {
   _eq: Boolean
   _neq: Boolean
@@ -204,6 +257,15 @@ input create_Projects_input {
   date_created: Date
   date_updated: Date
   favorite: Boolean
+  id: ID
+  name: String
+  user_created: String
+  user_updated: String
+}
+
+input create_todos_input {
+  date_created: Date
+  date_updated: Date
   id: ID
   name: String
   user_created: String
@@ -336,4 +398,86 @@ input update_Projects_input {
   name: String
   user_created: String
   user_updated: String
+}
+
+type views {
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  name: String
+  user_created: String
+  user_updated: String
+}
+
+type views_aggregated {
+  count: views_aggregated_count
+  countAll: Int
+  countDistinct: views_aggregated_count
+  group: JSON
+}
+
+type views_aggregated_count {
+  date_created: Int
+  date_updated: Int
+  id: Int
+  name: Int
+  user_created: Int
+  user_updated: Int
+}
+
+type views_collections {
+  collection: String
+  id: ID!
+  item: views_collections_item_union
+  views_id(filter: views_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): views
+}
+
+type views_collections_aggregated {
+  avg: views_collections_aggregated_fields
+  avgDistinct: views_collections_aggregated_fields
+  count: views_collections_aggregated_count
+  countAll: Int
+  countDistinct: views_collections_aggregated_count
+  group: JSON
+  max: views_collections_aggregated_fields
+  min: views_collections_aggregated_fields
+  sum: views_collections_aggregated_fields
+  sumDistinct: views_collections_aggregated_fields
+}
+
+type views_collections_aggregated_count {
+  collection: Int
+  id: Int
+  item: Int
+  views_id: Int
+}
+
+type views_collections_aggregated_fields {
+  id: Float
+}
+
+input views_collections_filter {
+  _and: [views_collections_filter]
+  _or: [views_collections_filter]
+  collection: string_filter_operators
+  id: number_filter_operators
+  item__todos: todos_filter
+  views_id: views_filter
+}
+
+union views_collections_item_union = todos
+
+input views_filter {
+  _and: [views_filter]
+  _or: [views_filter]
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  name: string_filter_operators
+  user_created: string_filter_operators
+  user_updated: string_filter_operators
 }
