@@ -33,6 +33,7 @@
    `)
 
     $: ({ Projects } = data)
+
 </script>
 
 {#if $Projects.fetching}
