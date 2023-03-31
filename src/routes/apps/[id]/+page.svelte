@@ -14,11 +14,16 @@
 	fetching
 {:else}
 	<div class="grid grid-cols-12">
-		<div class="col-span-3" />
+		<div class="col-span-3">
+			<Heading tag="h5">
+				{$AppById.data.apps_by_id.name}<br />
+				<Secondary>{$AppById.data.apps_by_id.id}</Secondary>
+			</Heading>
+		</div>
 		<div class="col-span-9">
-			<Heading tag="h4"
-				>{$AppById.data.apps_by_id.name}<br />
-				<Secondary class="ml-2">{$AppById.data.apps_by_id.id}</Secondary></Heading
+			<Heading tag="h5"
+				>Todos<br />
+				<Secondary>Listing related todos</Secondary></Heading
 			>
 			<List tag="ul" class="divide-y divide-gray-200 dark:divide-gray-700">
 				{#each $AppById.data.apps_by_id.todos as todo}
