@@ -8,5 +8,11 @@ query AppById($id: ID!) {
 				name
 			}
 		}
+		components {
+			ora_components_id {
+				name
+				code
+			}
+		}
 	}
 }

@@ -81,12 +81,21 @@ type Query {
   apps(filter: apps_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps!]!
   apps_aggregated(filter: apps_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_aggregated!]!
   apps_by_id(id: ID!): apps
+  apps_ora_components(filter: apps_ora_components_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_ora_components!]!
+  apps_ora_components_aggregated(filter: apps_ora_components_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_ora_components_aggregated!]!
+  apps_ora_components_by_id(id: ID!): apps_ora_components
   apps_todos(filter: apps_todos_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_todos!]!
   apps_todos_aggregated(filter: apps_todos_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_todos_aggregated!]!
   apps_todos_by_id(id: ID!): apps_todos
   apps_views(filter: apps_views_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_views!]!
   apps_views_aggregated(filter: apps_views_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_views_aggregated!]!
   apps_views_by_id(id: ID!): apps_views
+  ora_components(filter: ora_components_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ora_components!]!
+  ora_components_aggregated(filter: ora_components_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ora_components_aggregated!]!
+  ora_components_by_id(id: ID!): ora_components
+  ora_components_code(filter: ora_components_code_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ora_components_code!]!
+  ora_components_code_aggregated(filter: ora_components_code_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [ora_components_code_aggregated!]!
+  ora_components_code_by_id(id: ID!): ora_components_code
   todos(filter: todos_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [todos!]!
   todos_aggregated(filter: todos_filter, groupBy: [String], limit: Int, offset: Int, page: Int, search: String, sort: [String]): [todos_aggregated!]!
   todos_by_id(id: ID!): todos
@@ -99,6 +108,8 @@ type Query {
 }
 
 type apps {
+  components(filter: apps_ora_components_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_ora_components]
+  components_func: count_functions
   date_created: Date
   date_created_func: datetime_functions
   date_updated: Date
@@ -129,6 +140,7 @@ type apps_aggregated {
 }
 
 type apps_aggregated_count {
+  components: Int
   date_created: Int
   date_updated: Int
   id: Int
@@ -148,6 +160,8 @@ type apps_aggregated_fields {
 input apps_filter {
   _and: [apps_filter]
   _or: [apps_filter]
+  components: apps_ora_components_filter
+  components_func: count_function_filter_operators
   date_created: date_filter_operators
   date_created_func: datetime_function_filter_operators
   date_updated: date_filter_operators
@@ -162,6 +176,43 @@ input apps_filter {
   user_updated: string_filter_operators
   views: apps_views_filter
   views_func: count_function_filter_operators
+}
+
+type apps_ora_components {
+  apps_id(filter: apps_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): apps
+  id: ID!
+  ora_components_id(filter: ora_components_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): ora_components
+}
+
+type apps_ora_components_aggregated {
+  avg: apps_ora_components_aggregated_fields
+  avgDistinct: apps_ora_components_aggregated_fields
+  count: apps_ora_components_aggregated_count
+  countAll: Int
+  countDistinct: apps_ora_components_aggregated_count
+  group: JSON
+  max: apps_ora_components_aggregated_fields
+  min: apps_ora_components_aggregated_fields
+  sum: apps_ora_components_aggregated_fields
+  sumDistinct: apps_ora_components_aggregated_fields
+}
+
+type apps_ora_components_aggregated_count {
+  apps_id: Int
+  id: Int
+  ora_components_id: Int
+}
+
+type apps_ora_components_aggregated_fields {
+  id: Float
+}
+
+input apps_ora_components_filter {
+  _and: [apps_ora_components_filter]
+  _or: [apps_ora_components_filter]
+  apps_id: apps_filter
+  id: number_filter_operators
+  ora_components_id: ora_components_filter
 }
 
 type apps_todos {
@@ -330,6 +381,99 @@ input number_filter_operators {
   _nin: [GraphQLStringOrFloat]
   _nnull: Boolean
   _null: Boolean
+}
+
+type ora_components {
+  apps(filter: apps_ora_components_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): [apps_ora_components]
+  apps_func: count_functions
+  code: String
+  date_created: Date
+  date_created_func: datetime_functions
+  date_updated: Date
+  date_updated_func: datetime_functions
+  id: ID!
+  name: String!
+  svelte: String
+  user_created: String
+  user_updated: String
+}
+
+type ora_components_aggregated {
+  count: ora_components_aggregated_count
+  countAll: Int
+  countDistinct: ora_components_aggregated_count
+  group: JSON
+}
+
+type ora_components_aggregated_count {
+  apps: Int
+  code: Int
+  date_created: Int
+  date_updated: Int
+  id: Int
+  name: Int
+  svelte: Int
+  user_created: Int
+  user_updated: Int
+}
+
+type ora_components_code {
+  collection: String
+  id: ID!
+  item: ora_components_code_item_union
+  ora_components_id(filter: ora_components_filter, limit: Int, offset: Int, page: Int, search: String, sort: [String]): ora_components
+}
+
+type ora_components_code_aggregated {
+  avg: ora_components_code_aggregated_fields
+  avgDistinct: ora_components_code_aggregated_fields
+  count: ora_components_code_aggregated_count
+  countAll: Int
+  countDistinct: ora_components_code_aggregated_count
+  group: JSON
+  max: ora_components_code_aggregated_fields
+  min: ora_components_code_aggregated_fields
+  sum: ora_components_code_aggregated_fields
+  sumDistinct: ora_components_code_aggregated_fields
+}
+
+type ora_components_code_aggregated_count {
+  collection: Int
+  id: Int
+  item: Int
+  ora_components_id: Int
+}
+
+type ora_components_code_aggregated_fields {
+  id: Float
+}
+
+input ora_components_code_filter {
+  _and: [ora_components_code_filter]
+  _or: [ora_components_code_filter]
+  collection: string_filter_operators
+  id: number_filter_operators
+  item__ora_components: ora_components_filter
+  ora_components_id: ora_components_filter
+}
+
+union ora_components_code_item_union = ora_components
+
+input ora_components_filter {
+  _and: [ora_components_filter]
+  _or: [ora_components_filter]
+  apps: apps_ora_components_filter
+  apps_func: count_function_filter_operators
+  code: string_filter_operators
+  date_created: date_filter_operators
+  date_created_func: datetime_function_filter_operators
+  date_updated: date_filter_operators
+  date_updated_func: datetime_function_filter_operators
+  id: string_filter_operators
+  name: string_filter_operators
+  svelte: string_filter_operators
+  user_created: string_filter_operators
+  user_updated: string_filter_operators
 }
 
 input string_filter_operators {
