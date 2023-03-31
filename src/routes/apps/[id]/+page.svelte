@@ -1,8 +1,6 @@
 <script>
 	import { Li, List, Heading, Secondary } from 'flowbite-svelte';
 
-	let Test;
-
 	function loadComponent() {
 		import('$lib/components/Test.svelte').then((res) => (Test = res.default));
 	}
@@ -16,15 +14,7 @@
 	fetching
 {:else}
 	<div class="grid grid-cols-12">
-		<div class="col-span-3">
-			<!-- <Test /> -->
-			<button on:click={loadComponent}>Load Component</button>
-			<svelte:component this={Test} />
-
-			<!-- {#each $AppById.data.apps_by_id.components as component}
-				<svelte:component this={option.component} />
-			{/each} -->
-		</div>
+		<div class="col-span-3" />
 		<div class="col-span-9">
 			<Heading tag="h4"
 				>{$AppById.data.apps_by_id.name}<br />
