@@ -23,6 +23,7 @@
 			<NavLi href="/" active={true}>Home</NavLi>
 			<NavLi href="/projects">Projects</NavLi>
 			<NavLi href="/apps">Apps</NavLi>
+			<NavLi href="/account">Account</NavLi>
 		</NavUl>
 		<DarkMode btnClass={darkmodebtn} />
 	</Navbar>

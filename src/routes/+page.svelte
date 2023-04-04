@@ -1,5 +1,6 @@
 <script>
 	import { Heading, P } from 'flowbite-svelte';
+	import Login from '$lib/components/Login.svelte';
 </script>
 
 <div class="text-center py-12">
@@ -10,4 +11,8 @@
 		>At Ora we focus on you and where your passion evolves, to unlock long-term personal and
 		economic growth.</P
 	>
+</div>
+
+<div class="flex flex-col items-center justify-center">
+	<Login />
 </div>

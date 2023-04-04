@@ -66,6 +66,8 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.11.7",
+        "@teamhanko/hanko-elements": "0.2.2-alpha",
+        "@teamhanko/hanko-frontend-sdk": "0.2.1-alpha",
         "classnames": "^2.3.2"
     }
 }

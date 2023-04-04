@@ -4,6 +4,12 @@ dependencies:
   '@popperjs/core':
     specifier: ^2.11.7
     version: 2.11.7
+  '@teamhanko/hanko-elements':
+    specifier: 0.2.2-alpha
+    version: 0.2.2-alpha
+  '@teamhanko/hanko-frontend-sdk':
+    specifier: 0.2.1-alpha
+    version: 0.2.1-alpha
   classnames:
     specifier: ^2.3.2
     version: 2.3.2
@@ -113,6 +119,14 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
     dev: true
+
+  /@denysvuika/preact-translate@0.4.1(preact@10.13.2):
+    resolution: {integrity: sha512-JCgTwPd6iq0nD6betffGYT4C2mj+PYLjEPuDcMRny4Nsh4E2W7UHWD8/jHnUyGiDnt0nezqAzP0s/AB+6XMVJg==}
+    peerDependencies:
+      preact: '>=10.0.0'
+    dependencies:
+      preact: 10.13.2
+    dev: false
 
   /@esbuild/android-arm64@0.16.17:
     resolution: {integrity: sha512-MIGl6p5sc3RDTLLkYL1MyL8BMRN4tLMRCn+yRJJmEDvYZ2M7tmAf80hx1kbNEUX2KJ50RRtxZ4JHLvCfuB6kBg==}
@@ -795,6 +809,36 @@ packages:
       - supports-color
     dev: true
 
+  /@teamhanko/hanko-elements@0.2.2-alpha:
+    resolution: {integrity: sha512-l6UhGBsU77Z11FHzNJTsxz7nqO+qXy/hJP+tDxl8QJV4ePHICbCSoYpzA2OeONi6vWvLhIVN8dcZdfC27eL+cw==}
+    dependencies:
+      '@denysvuika/preact-translate': 0.4.1(preact@10.13.2)
+      '@teamhanko/hanko-frontend-sdk': 0.2.0-alpha
+      '@teamhanko/preact-custom-element': 4.2.2(preact@10.13.2)
+      classnames: 2.3.2
+      preact: 10.13.2
+    dev: false
+
+  /@teamhanko/hanko-frontend-sdk@0.2.0-alpha:
+    resolution: {integrity: sha512-Jf5ztd9RIlUB+mx6r8VDpBqUEyzhzwjNpHALIFlUjg3lFomsLbpFO7arX0wtVEo8uWcBaSA8pm8XAuQEzbyIaw==}
+    dependencies:
+      '@types/js-cookie': 3.0.3
+    dev: false
+
+  /@teamhanko/hanko-frontend-sdk@0.2.1-alpha:
+    resolution: {integrity: sha512-XqC3GmRD/KMyNV4K3O8FItr0YEvU+yeC4y7yj+79bdLfs+EA/ARk5PteHWx+F/0rGLejf6Zr51vjVEO/3RqHCA==}
+    dependencies:
+      '@types/js-cookie': 3.0.3
+    dev: false
+
+  /@teamhanko/preact-custom-element@4.2.2(preact@10.13.2):
+    resolution: {integrity: sha512-3djCQr25IxQIgpidxD8J0fTQ7/hMuoa5Nmv7delQc6sX4kXgv9e/pE01cywpmGZLi69H1KUH4dmZ4cPPJQrsQQ==}
+    peerDependencies:
+      preact: 10.x
+    dependencies:
+      preact: 10.13.2
+    dev: false
+
   /@types/braces@3.0.1:
     resolution: {integrity: sha512-+euflG6ygo4bn0JHtn4pYqcXwRtLvElQ7/nnjDu7iYG56H0+OhCd7d6Ug0IE3WcFpZozBKW2+80FUbv5QGk5AQ==}
     dev: true
@@ -822,6 +866,10 @@ packages:
     dependencies:
       '@types/node': 18.15.10
     dev: true
+
+  /@types/js-cookie@3.0.3:
+    resolution: {integrity: sha512-Xe7IImK09HP1sv2M/aI+48a20VX+TdRJucfq4vfRVy6nWN8PYPOEnlMRSgxJAgYQIXJVL8dZ4/ilAM7dWNaOww==}
+    dev: false
 
   /@types/json-schema@7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
@@ -2789,6 +2837,10 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.0.2
     dev: true
+
+  /preact@10.13.2:
+    resolution: {integrity: sha512-q44QFLhOhty2Bd0Y46fnYW0gD/cbVM9dUVtNTDKPcdXSMA7jfY+Jpd6rk3GB0lcQss0z5s/6CmVP0Z/hV+g6pw==}
+    dev: false
 
   /prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
