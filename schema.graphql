@@ -4,6 +4,9 @@ scalar Date
 """A Float or a String"""
 scalar GraphQLStringOrFloat
 
+"""Hashed string values"""
+scalar Hash
+
 """
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
@@ -310,8 +313,20 @@ input create_Projects_input {
   favorite: Boolean
   id: ID
   name: String
-  user_created: String
-  user_updated: String
+  user_created: create_directus_users_input
+  user_updated: create_directus_users_input
+}
+
+input create_directus_users_input {
+  avatar: String
+  description: String
+  email: String
+  first_name: String
+  last_name: String
+  location: String
+  password: Hash
+  role: String
+  title: String
 }
 
 input create_todos_input {
@@ -319,8 +334,8 @@ input create_todos_input {
   date_updated: Date
   id: ID
   name: String
-  user_created: String
-  user_updated: String
+  user_created: create_directus_users_input
+  user_updated: create_directus_users_input
 }
 
 input date_filter_operators {
