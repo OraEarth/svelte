@@ -3,11 +3,12 @@
 	import { register } from '@teamhanko/hanko-elements';
 	import { Hanko } from '@teamhanko/hanko-frontend-sdk';
 	import { Button, Modal } from 'flowbite-svelte';
+	import { config } from '$lib/config.js';
 
 	let defaultModal = false;
 
-	const api = import.meta.env.VITE_HANKO_API;
-	const hanko = new Hanko(import.meta.env.VITE_HANKO_API);
+	const api = config.hanko;
+	const hanko = new Hanko(config.hanko);
 
 	let element;
 	let user;

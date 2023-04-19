@@ -3,6 +3,9 @@
     "compilerOptions": {
         "allowJs": true,
         "checkJs": true,
+        "types": [
+            "vite/client"
+        ],
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "resolveJsonModule": true,

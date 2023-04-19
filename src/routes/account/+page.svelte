@@ -4,8 +4,9 @@
 	import { onMount } from 'svelte';
 	import { generatePashword } from '@pashword/pashword-lib';
 	import { Button } from 'flowbite-svelte';
+	import { config } from '$lib/config';
 
-	const hanko = new Hanko(import.meta.env.VITE_HANKO_API);
+	const hanko = new Hanko(config.hanko);
 
 	let user;
 
@@ -15,7 +16,7 @@
 
 	async function signUpDirectusUser() {
 		let pashedPassword = await generatePashword(
-			JSON.stringify(user.webauthn_credentials[0].id + import.meta.env.VITE_PASHWORD_SALT),
+			JSON.stringify(user.webauthn_credentials[0].id + config.pashword),
 			32,
 			'https://ora.earth',
 			user.email
